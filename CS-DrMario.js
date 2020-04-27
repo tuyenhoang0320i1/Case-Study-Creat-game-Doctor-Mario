@@ -122,7 +122,8 @@ Piece.prototype.rotate = function () {
             // it's the right wall
             kick = -1; // we need to move the piece to the left
         } else {
-
+//          // it's the right wall
+            kick = 1; // we need to move the piece to the right
         }
     }
 
