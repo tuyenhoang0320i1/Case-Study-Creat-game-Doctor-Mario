@@ -107,7 +107,7 @@ Piece.prototype.moveRight = function () {
 Piece.prototype.moveLeft = function () {
     if (!this.collision(-1,0,this.activeTetromino)) {
         this.unDraw();
-        this.x++;
+        this.x--;
         this.draw();
     }
 }
