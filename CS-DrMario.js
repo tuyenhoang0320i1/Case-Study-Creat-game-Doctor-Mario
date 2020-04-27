@@ -120,6 +120,9 @@ Piece.prototype.rotate = function () {
     if (this.collision(0,0,nextPattern)) {
         if (this.x > COL/2) {
             // it's the right wall
+            kick = -1; // we need to move the piece to the left
+        } else {
+
         }
     }
 
