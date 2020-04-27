@@ -128,8 +128,9 @@ Piece.prototype.rotate = function () {
     }
 
 
-    if (!this.collision(0,0,nextPattern)) {
+    if (!this.collision(kick,0,0,nextPattern)) {
         this.unDraw();
+        this.x +=kick;
         this.tetrominoN = (this.tetrominoN + 1)%this.tetromino.length; //(0+1)%4 =>1
         this.activeTetromino = this.tetromino[this.tetrominoN];
         this.draw();
