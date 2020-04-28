@@ -167,6 +167,7 @@ Piece.prototype.lock = function() {
     }
 }
 
+
 // collision function
 
 Piece.prototype.collision = function (x, y, piece) {
@@ -195,6 +196,48 @@ Piece.prototype.collision = function (x, y, piece) {
         }
     }
     return false;
+}
+
+// check remove tetromino
+
+checkHorizontal() {
+    for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 6; col++) {
+            let matchCount = 0;
+            for (let i = 1; i < 5; i++) {
+                if (this.grid[row][col].color === this.grid[row][col + i].color && this.grid[row][col].color !== -1) {
+                    matchCount++;
+                }
+            }
+            if (matchCount >= 3) {
+                for (matchCount; matchCount >= 0; matchCount--) {
+                    this.grid[row][col + matchCount].color = -1;
+                    this.grid[row][col + matchCount].virus = false;
+                }
+                this.drawGrid();
+            }
+        }
+    }
+}
+
+checkVertical() {
+    for (let col = 0; col < 10; col++) {
+        for (let row = 0; row < 16; row++) {
+            let matchCount = 0;
+            for (let i = 1; i < 5; i++) {
+                if (this.grid[row][col].color === this.grid[row + i][col].color && this.grid[row][col].color !== -1) {
+                    matchCount++;
+                }
+            }
+            if (matchCount >= 3) {
+                for (matchCount; matchCount >= 0; matchCount--) {
+                    this.grid[row + matchCount][col].color = -1;
+                    this.grid[row + matchCount][col].virus = false;
+                }
+                this.drawGrid();
+            }
+        }
+    }
 }
 
 
