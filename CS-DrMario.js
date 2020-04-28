@@ -100,6 +100,8 @@ Piece.prototype.moveDown = function () {
         this.draw();
     } else {
         // we lock the piece and generate a new one
+        this.lock();
+        p = randomPiece();
     }
 }
 
@@ -142,6 +144,26 @@ Piece.prototype.rotate = function () {
         this.tetrominoN = (this.tetrominoN + 1) % this.tetromino.length; //(0+1)%4 =>1
         this.activeTetromino = this.tetromino[this.tetrominoN];
         this.draw();
+    }
+}
+
+Piece.prototype.lock = function() {
+    for (r = 0; r < this.activeTetromino.length; r++) {
+        for (c = 0; c < this.activeTetromino.length; c++) {
+            // we skip the vacant squares
+            if (!this.activeTetromino[r][c]) {
+                continue;
+            }
+            // pieces to lock on top = game over
+            if (this.y + r < 0) {
+                alert("Game Over!");
+                // stop animation frame
+                gameOver = true;
+                break;
+            }
+            // we lock the piece
+            board[this.y + r][this.x + c] = this.color;
+        }
     }
 }
 
