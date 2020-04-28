@@ -206,16 +206,16 @@ for (let row = 0; row < 20; row++) {
     for (let col = 0; col < 10; col++) {
         let matchCount = 0;
         for (let i = 1; i < 5; i++) {
-            if (this.board[row][col].color === this.board[row][col + i].color && this.board[row][col].color !== -1) {
+            if (board[row][col].color === board[row][col + i].color && board[row][col].color !== -1) {
                 matchCount++;
             }
         }
         if (matchCount >= 3) {
             for (matchCount; matchCount >= 0; matchCount--) {
-                this.board[row][col + matchCount].color = -1;
+                board[row][col + matchCount].color = -1;
 
             }
-            this.drawBoard();
+            drawBoard();
         }
     }
 }
@@ -224,16 +224,16 @@ for (let col = 0; col < 10; col++) {
     for (let row = 0; row < 20; row++) {
         let matchCount = 0;
         for (let i = 1; i < 5; i++) {
-            if (this.board[row][col].color === this.board[row + i][col].color && this.board[row][col].color !== -1) {
+            if (board[row][col].color === board[row + i][col].color && board[row][col].color !== -1) {
                 matchCount++;
             }
         }
         if (matchCount >= 3) {
             for (matchCount; matchCount >= 0; matchCount--) {
-                this.board[row + matchCount][col].color = -1;
+                board[row + matchCount][col].color = -1;
 
             }
-            this.drawBoard();
+            drawBoard();
         }
     }
 }
