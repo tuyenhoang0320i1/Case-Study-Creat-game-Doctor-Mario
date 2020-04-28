@@ -205,16 +205,16 @@ checkHorizontal() {
         for (let col = 0; col < 6; col++) {
             let matchCount = 0;
             for (let i = 1; i < 5; i++) {
-                if (this.grid[row][col].color === this.grid[row][col + i].color && this.grid[row][col].color !== -1) {
+                if (this.board[row][col].color === this.board[row][col + i].color && this.board[row][col].color !== -1) {
                     matchCount++;
                 }
             }
             if (matchCount >= 3) {
                 for (matchCount; matchCount >= 0; matchCount--) {
-                    this.grid[row][col + matchCount].color = -1;
-                    this.grid[row][col + matchCount].virus = false;
+                    this.board[row][col + matchCount].color = -1;
+
                 }
-                this.drawGrid();
+                this.drawBoard();
             }
         }
     }
@@ -225,16 +225,16 @@ checkVertical() {
         for (let row = 0; row < 16; row++) {
             let matchCount = 0;
             for (let i = 1; i < 5; i++) {
-                if (this.grid[row][col].color === this.grid[row + i][col].color && this.grid[row][col].color !== -1) {
+                if (this.board[row][col].color === this.board[row + i][col].color && this.board[row][col].color !== -1) {
                     matchCount++;
                 }
             }
             if (matchCount >= 3) {
                 for (matchCount; matchCount >= 0; matchCount--) {
-                    this.grid[row + matchCount][col].color = -1;
-                    this.grid[row + matchCount][col].virus = false;
+                    this.board[row + matchCount][col].color = -1;
+
                 }
-                this.drawGrid();
+                this.drawBoard();
             }
         }
     }
