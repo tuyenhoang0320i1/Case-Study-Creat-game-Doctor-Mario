@@ -37,11 +37,20 @@ function drawBoard() {
 drawBoard();
 // the pieces and their colors
 const PIECES = [
-    [I, "red"]
+    [I, "red"],
+    [J, "blue"],
+    [T, "yellow"]
 ];
-// initate a piece
 
-let p = new Piece(PIECES[0][0], PIECES[0][1]);
+//generate random piece
+
+function randomPiece() {
+    let r = randomN = Math.floor(Math.random() * PIECES.length); // 0 - 3
+    return new Piece(PIECES[r][0],PIECES[r][1])
+}
+
+let p = randomPiece();
+
 
 // The Object Piece
 
@@ -54,7 +63,7 @@ function Piece(tetromino, color) {
 
     // we need to control the piece
     this.x = 4;
-    this.y = 0;
+    this.y = -1;
 }
 
 // fill function
@@ -183,7 +192,7 @@ function CONTROL(event) {
         dropStart = Date.now();
     } else if (event.keyCode == 40) {
         p.moveDown()
-        dropStart = Date.now();
+
     }
 }
 
