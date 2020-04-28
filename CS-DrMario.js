@@ -203,7 +203,7 @@ Piece.prototype.collision = function (x, y, piece) {
 
 
 for (let row = 0; row < 20; row++) {
-    for (let col = 0; col < 6; col++) {
+    for (let col = 0; col < 10; col++) {
         let matchCount = 0;
         for (let i = 1; i < 5; i++) {
             if (this.board[row][col].color === this.board[row][col + i].color && this.board[row][col].color !== -1) {
@@ -221,7 +221,7 @@ for (let row = 0; row < 20; row++) {
 }
 
 for (let col = 0; col < 10; col++) {
-    for (let row = 0; row < 16; row++) {
+    for (let row = 0; row < 20; row++) {
         let matchCount = 0;
         for (let i = 1; i < 5; i++) {
             if (this.board[row][col].color === this.board[row + i][col].color && this.board[row][col].color !== -1) {
