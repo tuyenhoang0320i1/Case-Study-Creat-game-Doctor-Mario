@@ -165,6 +165,44 @@ Piece.prototype.lock = function() {
             board[this.y + r][this.x + c] = this.color;
         }
     }
+    // check remove tetromino
+
+
+    for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 6; col++) {
+            let matchCount = 0;
+            for (let i = 1; i < 5; i++) {
+                if (this.board[row][col].color === this.board[row][col + i].color && this.board[row][col].color !== -1) {
+                    matchCount++;
+                }
+            }
+            if (matchCount >= 3) {
+                for (matchCount; matchCount >= 0; matchCount--) {
+                    this.board[row][col + matchCount].color = -1;
+
+                }
+                this.drawBoard();
+            }
+        }
+    }
+
+    for (let col = 0; col < 10; col++) {
+        for (let row = 0; row < 16; row++) {
+            let matchCount = 0;
+            for (let i = 1; i < 5; i++) {
+                if (this.board[row][col].color === this.board[row + i][col].color && this.board[row][col].color !== -1) {
+                    matchCount++;
+                }
+            }
+            if (matchCount >= 3) {
+                for (matchCount; matchCount >= 0; matchCount--) {
+                    this.board[row + matchCount][col].color = -1;
+
+                }
+                this.drawBoard();
+            }
+        }
+    }
 }
 
 
@@ -198,47 +236,7 @@ Piece.prototype.collision = function (x, y, piece) {
     return false;
 }
 
-// check remove tetromino
 
-
-    for (let row = 0; row < 20; row++) {
-        for (let col = 0; col < 6; col++) {
-            let matchCount = 0;
-            for (let i = 1; i < 5; i++) {
-                if (this.board[row][col].color === this.board[row][col + i].color && this.board[row][col].color !== -1) {
-                    matchCount++;
-                }
-            }
-            if (matchCount >= 3) {
-                for (matchCount; matchCount >= 0; matchCount--) {
-                    this.board[row][col + matchCount].color = -1;
-
-                }
-                this.drawBoard();
-            }
-        }
-    }
-
-
-checkVertical() {
-    for (let col = 0; col < 10; col++) {
-        for (let row = 0; row < 16; row++) {
-            let matchCount = 0;
-            for (let i = 1; i < 5; i++) {
-                if (this.board[row][col].color === this.board[row + i][col].color && this.board[row][col].color !== -1) {
-                    matchCount++;
-                }
-            }
-            if (matchCount >= 3) {
-                for (matchCount; matchCount >= 0; matchCount--) {
-                    this.board[row + matchCount][col].color = -1;
-
-                }
-                this.drawBoard();
-            }
-        }
-    }
-}
 
 
 // CONTROL the piece
