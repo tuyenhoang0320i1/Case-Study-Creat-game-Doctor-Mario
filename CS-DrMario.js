@@ -200,7 +200,7 @@ Piece.prototype.collision = function (x, y, piece) {
 
 // check remove tetromino
 
-checkHorizontal() {
+
     for (let row = 0; row < 20; row++) {
         for (let col = 0; col < 6; col++) {
             let matchCount = 0;
@@ -218,7 +218,7 @@ checkHorizontal() {
             }
         }
     }
-}
+
 
 checkVertical() {
     for (let col = 0; col < 10; col++) {
