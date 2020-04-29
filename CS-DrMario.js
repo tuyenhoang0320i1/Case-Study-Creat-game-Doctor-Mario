@@ -201,42 +201,44 @@ Piece.prototype.collision = function (x, y, piece) {
 
 // check remove tetromino
 
-
-for (let row = 0; row < 20; row++) {
-    for (let col = 0; col < 10; col++) {
-        let matchCount = 0;
-        for (let i = 1; i < 5; i++) {
-            if (p[row][col].color === p[row][col + i].color && p[row][col].color !== -1) {
-                matchCount++;
-            }
-        }
-        if (matchCount >= 3) {
-            for (matchCount; matchCount >= 0; matchCount--) {
-                p[row][col + matchCount].color = -1;
-
-            }
-            drawBoard();
-        }
-    }
-}
-
-for (let col = 0; col < 10; col++) {
+Piece.prototype.checkColor = function (row,col,piece) {
     for (let row = 0; row < 20; row++) {
-        let matchCount = 0;
-        for (let i = 1; i < 5; i++) {
-            if (p[row][col].color === p[row + i][col].color && p[row][col].color !== -1) {
-                matchCount++;
+        for (let col = 0; col < 10; col++) {
+            let matchCount = 0;
+            for (let i = 1; i < 5; i++) {
+                if (piece[row][col].color === piece[row][col + i].color && piece[row][col].color !== -1) {
+                    matchCount++;
+                }
+            }
+            if (matchCount >= 3) {
+                for (matchCount; matchCount >= 0; matchCount--) {
+                    piece[row][col + matchCount].color = -1;
+
+                }
+                drawBoard();
             }
         }
-        if (matchCount >= 3) {
-            for (matchCount; matchCount >= 0; matchCount--) {
-                p[row + matchCount][col].color = -1;
+    }
 
+    for (let col = 0; col < 10; col++) {
+        for (let row = 0; row < 20; row++) {
+            let matchCount = 0;
+            for (let i = 1; i < 5; i++) {
+                if (piece[row][col].color === piece[row + i][col].color && piece[row][col].color !== -1) {
+                    matchCount++;
+                }
             }
-            drawBoard();
+            if (matchCount >= 3) {
+                for (matchCount; matchCount >= 0; matchCount--) {
+                    piece[row + matchCount][col].color = -1;
+
+                }
+                drawBoard();
+            }
         }
     }
 }
+
 
 
 // CONTROL the piece
@@ -275,4 +277,5 @@ function drop() {
 }
 
 drop();
+
 
