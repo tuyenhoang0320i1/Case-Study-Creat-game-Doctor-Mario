@@ -147,7 +147,7 @@ Piece.prototype.rotate = function () {
     }
 }
 
-Piece.prototype.lock = function() { debugger
+Piece.prototype.lock = function() {
     for (r = 0; r < this.activeTetromino.length; r++) {
         for (c = 0; c < this.activeTetromino.length; c++) {
             // we skip the vacant squares
@@ -165,7 +165,7 @@ Piece.prototype.lock = function() { debugger
             board[this.y + r][this.x + c] = this.color;
         }
     }
-
+    this.checkColor();
 }
 
 
@@ -207,13 +207,13 @@ Piece.prototype.checkColor = function () {
         for (let col = 0; col < 10; col++) {
             let matchCount = 0;
             for (let i = 1; i < 5; i++) {
-                if (this.activeTetromino][col].color === this.activeTetromino][col + i].color && this.activeTetromino][col].color !== -1) {
+                if (board[row][col].color === board[row][col + i].color && board[row][col].color !== -1) {
                     matchCount++;
                 }
             }
             if (matchCount >= 3) {
                 for (matchCount; matchCount >= 0; matchCount--) {
-                    this.activeTetromino][col + matchCount].color = -1;
+                    board[row][col + matchCount].color = -1;
 
                 }
                 drawBoard();
@@ -225,13 +225,13 @@ Piece.prototype.checkColor = function () {
         for (let row = 0; row < 20; row++) {
             let matchCount = 0;
             for (let i = 1; i < 5; i++) {
-                if (this.activeTetromino][col].color === this.activeTetromino + i][col].color && this.activeTetromino][col].color !== -1) {
+                if (board[row][col].color === board[row + i][col].color && board[row][col].color !== -1) {
                     matchCount++;
                 }
             }
             if (matchCount >= 3) {
                 for (matchCount; matchCount >= 0; matchCount--) {
-                    this.activeTetromino + matchCount][col].color = -1;
+                    board[row + matchCount][col].color = -1;
 
                 }
                 drawBoard();
