@@ -1,5 +1,7 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const scoreElement = document.getElementById("score");
+
 const SQ = SquareSize = 20;
 const ROW = 20;
 const COL = COLUMN = 10;
@@ -147,6 +149,7 @@ Piece.prototype.rotate = function () {
     }
 }
 
+let score = 0;
 Piece.prototype.lock = function() {
     for (r = 0; r < this.activeTetromino.length; r++) {
         for (c = 0; c < this.activeTetromino.length; c++) {
@@ -165,7 +168,33 @@ Piece.prototype.lock = function() {
             board[this.y + r][this.x + c] = this.color;
         }
     }
-    this.checkColor();
+    // remove same color rows
+    for (r = 0; r < ROW; r++) {
+        let isSameColor = true;
+        for (c = 0; c < COL; c++) {
+            isSameColor = isSameColor && (board[r][c] != VACANT);
+        }
+        if (isSameColor) {
+            // if the row is same color
+            // we move all the same color row it
+            for (y = r; y > 1; y--) {
+                for (c = 0; c < COL; c++) {
+                    board[y][c] = board[y-1][c];
+                }
+            }
+            // the top row boadrd [0][..] has no row above it
+            for (c = 0; c < COL; c++) {
+                board[0][c] = VACANT;
+            }
+            // increment the score
+            score += 10;
+        }
+    }
+    // update the board
+    drawBoard();
+
+    // update the score
+    scoreElement.innerHTML = score;
 }
 
 
@@ -201,46 +230,6 @@ Piece.prototype.collision = function (x, y, piece) {
 }
 
 // check remove tetromino
-
-Piece.prototype.checkColor = function () {
-    for (let row = 0; row < 20; row++) {
-        for (let col = 0; col < 10; col++) {
-            let matchCount = 0;
-            for (let i = 1; i < 5; i++) {
-                if (board[row][col].color === board[row][col + i].color && board[row][col].color !== -1) {
-                    matchCount++;
-                }
-            }
-            if (matchCount >= 3) {
-                for (matchCount; matchCount >= 0; matchCount--) {
-                    board[row][col + matchCount].color = -1;
-
-                }
-                drawBoard();
-            }
-        }
-    }
-
-    for (let col = 0; col < 10; col++) {
-        for (let row = 0; row < 20; row++) {
-            let matchCount = 0;
-            for (let i = 1; i < 5; i++) {
-                if (board[row][col].color === board[row + i][col].color && board[row][col].color !== -1) {
-                    matchCount++;
-                }
-            }
-            if (matchCount >= 3) {
-                for (matchCount; matchCount >= 0; matchCount--) {
-                    board[row + matchCount][col].color = -1;
-
-                }
-                drawBoard();
-            }
-        }
-    }
-}
-
-
 
 // CONTROL the piece
 
