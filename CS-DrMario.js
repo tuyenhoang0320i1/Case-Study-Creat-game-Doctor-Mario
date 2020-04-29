@@ -206,13 +206,13 @@ for (let row = 0; row < 20; row++) {
     for (let col = 0; col < 10; col++) {
         let matchCount = 0;
         for (let i = 1; i < 5; i++) {
-            if (board[row][col].color === board[row][col + i].color && board[row][col].color !== -1) {
+            if (p[row][col].color === p[row][col + i].color && p[row][col].color !== -1) {
                 matchCount++;
             }
         }
         if (matchCount >= 3) {
             for (matchCount; matchCount >= 0; matchCount--) {
-                board[row][col + matchCount].color = -1;
+                p[row][col + matchCount].color = -1;
 
             }
             drawBoard();
@@ -224,13 +224,13 @@ for (let col = 0; col < 10; col++) {
     for (let row = 0; row < 20; row++) {
         let matchCount = 0;
         for (let i = 1; i < 5; i++) {
-            if (board[row][col].color === board[row + i][col].color && board[row][col].color !== -1) {
+            if (p[row][col].color === p[row + i][col].color && p[row][col].color !== -1) {
                 matchCount++;
             }
         }
         if (matchCount >= 3) {
             for (matchCount; matchCount >= 0; matchCount--) {
-                board[row + matchCount][col].color = -1;
+                p[row + matchCount][col].color = -1;
 
             }
             drawBoard();
