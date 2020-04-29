@@ -147,7 +147,7 @@ Piece.prototype.rotate = function () {
     }
 }
 
-Piece.prototype.lock = function() {
+Piece.prototype.lock = function() { debugger
     for (r = 0; r < this.activeTetromino.length; r++) {
         for (c = 0; c < this.activeTetromino.length; c++) {
             // we skip the vacant squares
@@ -197,22 +197,23 @@ Piece.prototype.collision = function (x, y, piece) {
         }
     }
     return false;
+    thís.checkColor();
 }
 
 // check remove tetromino
 
-Piece.prototype.checkColor = function (row,col,piece) {
+Piece.prototype.checkColor = function (row,col,activeTetromino) {
     for (let row = 0; row < 20; row++) {
         for (let col = 0; col < 10; col++) {
             let matchCount = 0;
             for (let i = 1; i < 5; i++) {
-                if (piece[row][col].color === piece[row][col + i].color && piece[row][col].color !== -1) {
+                if (activeTetromino[row][col].color === activeTetromino[row][col + i].color && activeTetromino[row][col].color !== -1) {
                     matchCount++;
                 }
             }
             if (matchCount >= 3) {
                 for (matchCount; matchCount >= 0; matchCount--) {
-                    piece[row][col + matchCount].color = -1;
+                    activeTetromino[row][col + matchCount].color = -1;
 
                 }
                 drawBoard();
@@ -224,13 +225,13 @@ Piece.prototype.checkColor = function (row,col,piece) {
         for (let row = 0; row < 20; row++) {
             let matchCount = 0;
             for (let i = 1; i < 5; i++) {
-                if (piece[row][col].color === piece[row + i][col].color && piece[row][col].color !== -1) {
+                if (activeTetromino[row][col].color === activeTetromino[row + i][col].color && activeTetromino[row][col].color !== -1) {
                     matchCount++;
                 }
             }
             if (matchCount >= 3) {
                 for (matchCount; matchCount >= 0; matchCount--) {
-                    piece[row + matchCount][col].color = -1;
+                    activeTetromino[row + matchCount][col].color = -1;
 
                 }
                 drawBoard();
