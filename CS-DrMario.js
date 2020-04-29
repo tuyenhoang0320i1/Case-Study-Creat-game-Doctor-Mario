@@ -197,23 +197,23 @@ Piece.prototype.collision = function (x, y, piece) {
         }
     }
     return false;
-    thís.checkColor();
+
 }
 
 // check remove tetromino
 
-Piece.prototype.checkColor = function (row,col,activeTetromino) {
+Piece.prototype.checkColor = function () {
     for (let row = 0; row < 20; row++) {
         for (let col = 0; col < 10; col++) {
             let matchCount = 0;
             for (let i = 1; i < 5; i++) {
-                if (activeTetromino[row][col].color === activeTetromino[row][col + i].color && activeTetromino[row][col].color !== -1) {
+                if (this.activeTetromino][col].color === this.activeTetromino][col + i].color && this.activeTetromino][col].color !== -1) {
                     matchCount++;
                 }
             }
             if (matchCount >= 3) {
                 for (matchCount; matchCount >= 0; matchCount--) {
-                    activeTetromino[row][col + matchCount].color = -1;
+                    this.activeTetromino][col + matchCount].color = -1;
 
                 }
                 drawBoard();
@@ -225,13 +225,13 @@ Piece.prototype.checkColor = function (row,col,activeTetromino) {
         for (let row = 0; row < 20; row++) {
             let matchCount = 0;
             for (let i = 1; i < 5; i++) {
-                if (activeTetromino[row][col].color === activeTetromino[row + i][col].color && activeTetromino[row][col].color !== -1) {
+                if (this.activeTetromino][col].color === this.activeTetromino + i][col].color && this.activeTetromino][col].color !== -1) {
                     matchCount++;
                 }
             }
             if (matchCount >= 3) {
                 for (matchCount; matchCount >= 0; matchCount--) {
-                    activeTetromino[row + matchCount][col].color = -1;
+                    this.activeTetromino + matchCount][col].color = -1;
 
                 }
                 drawBoard();
