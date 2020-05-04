@@ -168,24 +168,26 @@ Piece.prototype.lock = function() {
             board[this.y + r][this.x + c] = this.color;
         }
     }
-    // remove same color rows
-    for (r = 0; r < ROW; r++) {
+    // remove same color rows with vertical
+    for (r = 0; r < ROW; r++) { debugger
         let isSameColor = true;
         for (c = 0; c < COL; c++) {
             isSameColor = isSameColor && (board[r][c] != VACANT);
+
+            }
+            if (isSameColor) {
+                // check with is the full row
+                // remove full row
+
+                for (y = r; y > 1; y--) {
+                    for (c = 0; c < COL; c++) {
+                        board[y][c] = board[y-1][c];
+            }
         }
-        if (isSameColor) {
-            // if the row is same color
-            // we move all the same color row it
-            for (y = r; y > 1; y--) {
                 for (c = 0; c < COL; c++) {
-                    board[y][c] = board[y-1][c];
+                    board[0][c] = VACANT;
                 }
-            }
-            // the top row boadrd [0][..] has no row above it
-            for (c = 0; c < COL; c++) {
-                board[0][c] = VACANT;
-            }
+
             // increment the score
             score += 10;
         }
