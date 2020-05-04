@@ -43,6 +43,7 @@ const PIECES = [
     [J, "blue"],
     [T, "yellow"]
 ];
+console.log(PIECES);
 
 //generate random piece
 
